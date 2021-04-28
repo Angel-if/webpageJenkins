@@ -1,53 +1,20 @@
-
-#!/usr/bin/env groovy
-// see https://jenkins.io/doc/book/pipeline/syntax/
-
 pipeline {
-
-    agent any
-
-    tools {
-        maven "Maven"
-    }
-
-    triggers {
-        pollSCM "* * * * *"
-    }
-    
-    options {
-        timestamps()
-        ansiColor("xterm")
-    }
-
-    parameters {
-        booleanParam(name: "RELEASE",
-                description: "Build a release from current commit.",
-                defaultValue: false)
-    }
-
+    agent none
     stages {
-
-        stage("Build & Deploy SNAPSHOT") {
+        stage('Example Build') {
             steps {
-                sh "mvn -B deploy"
+                echo 'Hello World'
             }
         }
-
-        stage("Release") {
+        stage('Example Deploy') {
             when {
-                expression { params.RELEASE }
+                expression {
+                    currentBuild.buildCauses.toString().contains("Push event to branch")
+                }
             }
             steps {
-                sh "mvn -B release:prepare"
-                sh "mvn -B release:perform"
+                echo 'Deploying'
             }
-        }
-
-    }
-
-    post {
-        always {
-            deleteDir()
         }
     }
 }
