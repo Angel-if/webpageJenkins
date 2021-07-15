@@ -1,5 +1,21 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /opt/tomcat/webapps
+permissions:
+  - object: /opt/tomcat/webapps
+    owner: tomcat
+    group: tomcat
+    type:
+      - directory
+      - file
+hooks:
+  ApplicationStart:
+    - location: startup.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: shutdown.sh
+      timeout: 300
+      runas: root
