@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - wget -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+      - unzip awscliv2.zip
+      - ./aws/install
+
+  pre_build:
+    commands:
+      - aws configure set default.region us-west-2
+
+  build:
+    commands:
+      - aws s3 cp s3://trust-app/prepare.sh .
+      - chmod +x prepare.sh
+
+  post_build:
+    commands:
+      - echo Entering post_build phase...
+      - ./prepare.sh
+
+artifacts:
+  type: zip
+  files:
+    - 'ROOT.war'
+    - 'client.war'
+    - 'mocks.war'
+    - 'appspec.yml'
+    - 'startup.sh'
+    - 'shutdown.sh'
