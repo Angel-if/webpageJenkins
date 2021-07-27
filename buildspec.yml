@@ -13,10 +13,11 @@ phases:
       - unzip awscliv2.zip
       - ./aws/install
       - aws configure set default.region us-west-2
+      - BUILD= `curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/CLOUDAUTHZ-2697-develop/lastSuccessfulBuild/buildNumber`
 
   pre_build:
     commands:
-      -  wget -O output.txt https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/"$BRANCHNAME"/"$BUILD"/console
+      - wget -O output.txt https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/"$BRANCHNAME"/"$BUILD"/console
       - REPO='https://cernerrepos.net/maven'
       - ROOT=$(cat output.txt | grep target/ROOT.war | awk '{printf $8}' | sed 's/-SNAPSHOT//g')
       - CLIENT=$(cat output.txt | grep target/client.war | awk '{printf $8}'| sed 's/-SNAPSHOT//g')
