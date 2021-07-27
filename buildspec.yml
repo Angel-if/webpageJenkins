@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   variables:
-    BRANCHNAME: "/usr/lib/jvm/java-8-openjdk-amd64"
+    BRANCHNAME: "CLOUDAUTHZ-2697-develop"
     REPO: 'https://cernerrepos.net/maven'
-    
+
 phases:
   install:
     commands:
@@ -12,7 +12,7 @@ phases:
       - unzip awscliv2.zip
       - ./aws/install
       - aws configure set default.region us-west-2
-      - BUILD=`curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/CLOUDAUTHZ-2697-develop/lastSuccessfulBuild/buildNumber`
+      - BUILD= `curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/CLOUDAUTHZ-2697-develop/lastSuccessfulBuild/buildNumber`
 
   pre_build:
     commands:
@@ -25,13 +25,13 @@ phases:
 
   build:
     commands:
-      - aws s3 cp s3://trust-app/prepare.sh .
-      - chmod +x prepare.sh
+      - wget -O ROOT.war "$REPO"/"$ROOT"
+      - wget -O client.war "$REPO"/"$CLIENT"
+      - wget -O mocks.war "$REPO"/"$MOCKS"
 
   post_build:
     commands:
       - echo Entering post_build phase...
-      - ./prepare.sh
 
 artifacts:
   type: zip
@@ -39,6 +39,3 @@ artifacts:
     - 'ROOT.war'
     - 'client.war'
     - 'mocks.war'
-    - 'appspec.yml'
-    - 'startup.sh'
-    - 'shutdown.sh'
