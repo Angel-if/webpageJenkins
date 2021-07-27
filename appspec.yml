@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /
     destination: /opt/tomcat/webapps
-    overwrite: true
+    file_exists_behavior: OVERWRITE
 permissions:
   - object: /opt/tomcat/webapps
     owner: tomcat
