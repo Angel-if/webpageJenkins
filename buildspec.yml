@@ -4,8 +4,7 @@ env:
   variables:
     BRANCHNAME: "/usr/lib/jvm/java-8-openjdk-amd64"
     REPO: 'https://cernerrepos.net/maven'
-    BUILD: `curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/CLOUDAUTHZ-2697-develop/lastSuccessfulBuild/buildNumber`
-
+    
 phases:
   install:
     commands:
