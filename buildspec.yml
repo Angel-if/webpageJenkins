@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     BRANCHNAME: "CLOUDAUTHZ-2697-develop"
-    REPO: 'https://cernerrepos.net/maven'
+    REPO: 'https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job'
 
 phases:
   install:
@@ -11,23 +11,22 @@ phases:
       - wget -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
       - unzip awscliv2.zip
       - ./aws/install
-      - aws configure set default.region us-west-2
-      - BUILD=`curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/CLOUDAUTHZ-2697-develop/lastSuccessfulBuild/buildNumber`
+      - aws configure set default.region us-east-2
+      - BUILD=`curl -L -0 curl -L -0 https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/"$BRANCHNAME"/lastSuccessfulBuild/buildNumber`
 
   pre_build:
     commands:
       - wget -O output.txt https://jenkins-partners.cerner.com/job/cerner-corp/job/authorization-server-reactor/job/"$BRANCHNAME"/"$BUILD"/console
-      - REPO='https://cernerrepos.net/maven'
-      - ROOT=$(cat output.txt | grep target/ROOT.war | awk '{printf $8}' | sed 's/-SNAPSHOT//g')
-      - CLIENT=$(cat output.txt | grep target/client.war | awk '{printf $8}'| sed 's/-SNAPSHOT//g')
-      - MOCKS=$(cat output.txt | grep target/mocks.war | awk '{printf $8}'| sed 's/-SNAPSHOT//g')
+      - ROOT=$(cat output.txt | grep target/ROOT.war | awk '{printf $8}')
+      - CLIENT=$(cat output.txt | grep target/client.war | awk '{printf $8}')
+      - MOCKS=$(cat output.txt | grep target/mocks.war | awk '{printf $8}')
       - rm -rf output.txt
 
   build:
     commands:
-      - wget -O ROOT.war "$REPO"/"$ROOT"
-      - wget -O client.war "$REPO"/"$CLIENT"
-      - wget -O mocks.war "$REPO"/"$MOCKS"
+      - wget -O ROOT.war "$REPO"/"$BRANCHNAME"/"$BUILD"/artifact/"$ROOT"
+      - wget -O client.war "$REPO"/"$BRANCHNAME"/"$BUILD"/artifact/"$CLIENT"
+      - wget -O mocks.war "$REPO"/"$BRANCHNAME"/"$BUILD"/artifact/"$MOCKS"
 
   post_build:
     commands:
@@ -39,3 +38,4 @@ artifacts:
     - 'ROOT.war'
     - 'client.war'
     - 'mocks.war'
+
