@@ -6,6 +6,7 @@ files:
     file_exists_behavior: OVERWRITE
 permissions:
   - object: /opt/tomcat/webapps
+    mode: 755
     owner: tomcat
     group: tomcat
     type:
