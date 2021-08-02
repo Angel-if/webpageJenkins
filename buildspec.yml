@@ -39,4 +39,6 @@ artifacts:
     - 'client.war'
     - 'mocks.war'
     - 'appspec.yml'
+    - 'shutdown.sh'
+    - 'startup.sh'
 
