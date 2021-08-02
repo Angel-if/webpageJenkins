@@ -38,4 +38,5 @@ artifacts:
     - 'ROOT.war'
     - 'client.war'
     - 'mocks.war'
+    - 'appspec.yml
 
