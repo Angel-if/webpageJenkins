@@ -41,5 +41,4 @@ artifacts:
     - 'appspec.yml'
     - 'shutdown.sh'
     - 'startup.sh'
-    - 'clearup.sh'
 
