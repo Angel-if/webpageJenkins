@@ -16,7 +16,7 @@ hooks:
   BeforeInstall:
     - location: clearup.sh
       timeout: 300
-      runas: roo
+      runas: root
   ApplicationStart:
     - location: startup.sh
       timeout: 300
