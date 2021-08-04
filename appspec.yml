@@ -13,10 +13,6 @@ permissions:
       - directory
       - file
 hooks:
-  BeforeInstall:
-    - location: clearup.sh
-      timeout: 300
-      runas: root
   ApplicationStart:
     - location: startup.sh
       timeout: 300
