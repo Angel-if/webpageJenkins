@@ -1,3 +1,3 @@
 #!/bin/bash
 #Remove old deployments
-rm -rf /opt/codedeploy-agent/deployment-root/deployment-instructions/
+rm -rf /opt/codedeploy-agent/deployment-root/
