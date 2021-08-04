@@ -7,8 +7,8 @@ files:
 permissions:
   - object: /opt/tomcat/webapps
     mode: 755
-    owner: tomcat
-    group: tomcat
+    owner: root
+    group: root
     type:
       - directory
       - file
