@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /
     destination: /opt/tomcat/webapps
-    file_exists_behavior: OVERWRITE
+    #file_exists_behavior: OVERWRITE
 permissions:
   - object: /opt/tomcat/webapps
     mode: 755
