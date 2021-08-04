@@ -21,4 +21,7 @@ hooks:
     - location: shutdown.sh
       timeout: 300
       runas: root
-  
+  AfterInstall:
+    - location: clearup.sh
+      timeout: 300
+      runas: root
