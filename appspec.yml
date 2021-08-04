@@ -14,7 +14,7 @@ permissions:
       - file
 hooks:
   BeforeInstall:
-    - locartion: clearup.sh
+    - location: clearup.sh
       timeout: 300
       runas: roo
   ApplicationStart:
