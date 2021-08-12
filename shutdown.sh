@@ -10,4 +10,4 @@ Ln -s mocks.war /opt/tomcat/webapps
 ln -s client.war /opt/tomcat/webapps
 
 #Rotate old builds and files
-find /opt/codedeploy-agent/deployment-root/*/* -mtime +1 -exec rm -rf {} \;
+find /opt/codedeploy-agent/deployment-root/*/* -mmin +60 -exec rm -rf {} \;
