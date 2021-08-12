@@ -6,4 +6,4 @@ rm -f /opt/tomcat/webapps/ROOT.war /opt/tomcat/webapps/client.war  /opt/tomcat/w
 
 #Rotate old builds and files
 find /opt/codedeploy-agent/deployment-root/*/* -mmin +60 -exec rm -rf {} \; 2>/dev/null
-find /opt/codedeploy-agent/deployment-root/* -mmin +5 -exec rm -rf {} \; 2>/dev/null
+find /opt/codedeploy-agent/deployment-root/* -mmin +60 -exec rm -rf {} \; 2>/dev/null
