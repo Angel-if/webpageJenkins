@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /
+    destination: /opt/tomcat/webapps
     file_exists_behavior: OVERWRITE
 permissions:
   - object: /opt/tomcat/webapps
