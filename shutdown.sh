@@ -1,6 +1,7 @@
 #!/bin/bash
 systemctl stop tomcat
 cd /opt/tomcat/webapps/
+
 #remove previos version of linked files
 rm -f /opt/tomcat/webapps/ROOT.war /opt/tomcat/webapps/client.war  /opt/tomcat/webapps/mocks.war
 
